@@ -1,0 +1,47 @@
+query ($queryString: String!, $first: Int!, $after: String) {
+  search(query: $queryString, type: ISSUE, first: $first, after: $after) {
+    pageInfo {
+      endCursor
+      hasNextPage
+    }
+    nodes {
+      ... on Issue {
+        title
+        url
+        createdAt
+        updatedAt
+        labels(first: 10) {
+          nodes {
+            name
+          }
+        }
+        comments {
+          totalCount
+        }
+        assignees(first: 1) {
+          totalCount
+        }
+        repository {
+          name
+          description
+          stargazerCount
+          primaryLanguage {
+            name
+          }
+          owner {
+            login
+          }
+          pushedAt
+          visibility
+          repositoryTopics(first: 10) {
+            nodes {
+              topic {
+                name
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
