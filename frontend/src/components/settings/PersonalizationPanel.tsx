@@ -1,19 +1,24 @@
 import { useEffect, useState } from "react";
+import { getPersonalization, setPersonalization } from "@/lib/store";
 
 const PAGE_SIZE_KEY = "goodfirstissues_ipp";
 
-export default function PersonalizationPanel({ onClose }: { onClose: () => void }) {
+export default function PersonalizationPanel({
+  onClose,
+}: {
+  onClose: () => void;
+}) {
   const [selected, setSelected] = useState(20);
 
   useEffect(() => {
-    const cached = localStorage.getItem(PAGE_SIZE_KEY);
-    if (cached) {
-      setSelected(Number(cached));
+    const data = getPersonalization();
+    if (data?.issuesPerPage) {
+      setSelected(data.issuesPerPage);
     }
   }, []);
 
   const save = () => {
-    localStorage.setItem(PAGE_SIZE_KEY, String(selected));
+    setPersonalization({ issuesPerPage: selected });
     onClose();
   };
 

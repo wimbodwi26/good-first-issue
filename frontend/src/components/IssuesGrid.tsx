@@ -3,6 +3,7 @@ import { Issue } from "@/types/issue";
 import IssueCard from "@/components/IssueCard";
 import { IssuesGridProps } from "@/types/issuesgrid";
 import Pagination from "@/components/Pagination";
+import { getPersonalization } from "@/lib/store";
 
 const PAGE_SIZE_KEY = "goodfirstissues_ipp";
 
@@ -19,9 +20,9 @@ export default function IssuesGrid({
   const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
-    const stored = localStorage.getItem(PAGE_SIZE_KEY);
-    if (stored) {
-      setPageSize(Number(stored));
+    const data = getPersonalization();
+    if (data?.issuesPerPage) {
+      setPageSize(data.issuesPerPage);
     }
   }, []);
   useEffect(() => {
@@ -99,13 +100,12 @@ export default function IssuesGrid({
       </div>
 
       {totalPages > 1 && (
-  <Pagination
-    currentPage={currentPage}
-    totalPages={totalPages}
-    onPageChange={goToPage}
-  />
-)}
-
+        <Pagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          onPageChange={goToPage}
+        />
+      )}
     </div>
   );
 }

@@ -11,6 +11,9 @@ import { getRecommendedIssue } from "@/utils/recommendationEngine";
 import SettingsModal from "@/components/settings/SettingModal";
 
 export default function HomePage() {
+
+  const BACKEND_SERVER_URL = process.env.NEXT_PUBLIC_BACKEND_URL || "http://localhost:8000";
+
   const [issues, setIssues] = useState<Issue[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
@@ -51,9 +54,8 @@ export default function HomePage() {
     setLoading(true); // Reset loading spinner
     setError(null); // Clear previous error
     try {
-      console.log(process.env.BACKEND_URL)
       const response = await axios.get<Issue[]>(
-        `http://localhost:8000/api/issues`
+        `${BACKEND_SERVER_URL}/api/issues`
       );
       setIssues(response.data.data);
     } catch (error) {
