@@ -54,7 +54,7 @@ export default function HomePage() {
     setLoading(true); // Reset loading spinner
     setError(null); // Clear previous error
     try {
-      const response = await axios.get<Issue[]>(
+      const response = await axios.get(
         `${BACKEND_SERVER_URL}/api/issues`
       );
       setIssues(response.data.data);
