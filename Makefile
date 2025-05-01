@@ -16,3 +16,6 @@ start-mock:
 	
 start-worker:
 	cd backend && python3 -m venv venv && source venv/bin/activate && pip install -r requirements.txt && python worker.py
+
+deploy-backend:
+	cd backend && flyctl deploy
