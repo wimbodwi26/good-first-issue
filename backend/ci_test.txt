@@ -7,3 +7,5 @@ refactoring update
 renaming resoures
 
  script to prune packages from ghcr
+
+ removed temp
