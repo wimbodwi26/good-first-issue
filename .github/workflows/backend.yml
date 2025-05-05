@@ -37,17 +37,17 @@ jobs:
           # publish the image name as a step output
           echo "image=$IMAGE" >> $GITHUB_OUTPUT
 
-      - name: Clean up old GHCR versions
-        uses: actions/delete-package-versions@v5
-        with:
-          # The name of your GHCR package (check Packages → fastapi in your repo)
-          package-name: fastapi
-          # Since you’re using Docker/OCI images
-          package-type: container
-          # Keep only the 5 newest versions
-          min-versions-to-keep: 2
-          # Use your GHCR PAT so it can delete old tags
-          token: ${{ secrets.GHCR_TOKEN }}
+      # - name: Clean up old GHCR versions
+      #   uses: actions/delete-package-versions@v5
+      #   with:
+      #     # The name of your GHCR package (check Packages → fastapi in your repo)
+      #     package-name: fastapi
+      #     # Since you’re using Docker/OCI images
+      #     package-type: container
+      #     # Keep only the 5 newest versions
+      #     min-versions-to-keep: 2
+      #     # Use your GHCR PAT so it can delete old tags
+      #     token: ${{ secrets.GHCR_TOKEN }}
 
 
   deploy:
