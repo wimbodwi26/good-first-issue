@@ -37,6 +37,19 @@ jobs:
           # publish the image name as a step output
           echo "image=$IMAGE" >> $GITHUB_OUTPUT
 
+      - name: Clean up old GHCR versions
+        uses: dawidd6/action-delete-package-versions@v2
+        with:
+          
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          package-type: container
+        
+          package-name: fastapi
+        
+          keep: 2
+     
+
+
   deploy:
     name: Deploy to Azure
     runs-on: ubuntu-latest
@@ -56,15 +69,15 @@ jobs:
           inlineScript: |
             az containerapp update \
               --name fgi-fastapi-server \
-              --resource-group my-rg \
+              --resource-group gfi-server \
               --image ${{ needs.build.outputs.image }}
 
       # 3) Update the scheduled job to the new image
-      - name: Update Scheduled Job
-        uses: azure/CLI@v1
-        with:
-          inlineScript: |
-            az containerapp job update \
-              --name db-refresh \
-              --resource-group my-rg \
-              --image ${{ needs.build.outputs.image }}
+      # - name: Update Scheduled Job
+      #   uses: azure/CLI@v1
+      #   with:
+      #     inlineScript: |
+      #       az containerapp job update \
+      #         --name db-refresh \
+      #         --resource-group gfi-server \
+      #         --image ${{ needs.build.outputs.image }}

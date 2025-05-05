@@ -3,3 +3,5 @@ This file is just to test the CI Pipeline
 removing upper case in image name
 
 refactoring update
+
+renaming resoures
