@@ -43,32 +43,28 @@ jobs:
     needs: build
 
     steps:
-      # 2️⃣ Log in to Azure
+      # 1) Log in to Azure
       - name: Azure Login
         uses: azure/login@v1
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
 
+      # 2) Update your FastAPI app to the new image
       - name: Update FastAPI Container App
         uses: azure/CLI@v1
         with:
           inlineScript: |
             az containerapp update \
-              --name fastapi-api \
+              --name fgi-fastapi-server \
               --resource-group my-rg \
-              --image ${{ needs.build.outputs.image }} \
-              --registry-server ghcr.io \
-              --registry-username ${{ github.actor }} \
-              --registry-password ${{ secrets.GHCR_TOKEN }}
+              --image ${{ needs.build.outputs.image }}
 
-      - name: Update Scheduled Jobbac
+      # 3) Update the scheduled job to the new image
+      - name: Update Scheduled Job
         uses: azure/CLI@v1
         with:
           inlineScript: |
             az containerapp job update \
               --name db-refresh \
               --resource-group my-rg \
-              --image ${{ needs.build.outputs.image }} \
-              --registry-server ghcr.io \
-              --registry-username ${{ github.actor }} \
-              --registry-password ${{ secrets.GHCR_TOKEN }}
+              --image ${{ needs.build.outputs.image }}
