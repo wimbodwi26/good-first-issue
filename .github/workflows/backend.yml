@@ -45,7 +45,7 @@ jobs:
           # Since you’re using Docker/OCI images
           package-type: container
           # Keep only the 5 newest versions
-          min-versions-to-keep: 5
+          min-versions-to-keep: 2
           # Use your GHCR PAT so it can delete old tags
           token: ${{ secrets.GHCR_TOKEN }}
 
