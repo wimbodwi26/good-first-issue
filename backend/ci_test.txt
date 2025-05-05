@@ -5,3 +5,5 @@ removing upper case in image name
 refactoring update
 
 renaming resoures
+
+ script to prune packages from ghcr
