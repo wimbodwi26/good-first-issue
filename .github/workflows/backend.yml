@@ -6,7 +6,7 @@ on:
     paths: [ 'backend/**' ]
 
 env:
-  IMAGE_NAME: ${{ format('ghcr.io/{0}/{1}/fastapi', toLower(github.repository_owner), toLower(github.event.repository.name)) }}
+  IMAGE_NAME: ghcr.io/mrigankkh/good-first-issue/fastapi
 
 
 jobs:
