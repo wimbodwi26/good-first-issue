@@ -9,3 +9,5 @@ renaming resoures
  script to prune packages from ghcr
 
  removed temp
+
+ fixing issues with azure
