@@ -72,12 +72,11 @@ jobs:
               --resource-group gfi-server \
               --image ${{ needs.build.outputs.image }}
 
-      # 3) Update the scheduled job to the new image
-      # - name: Update Scheduled Job
-      #   uses: azure/CLI@v1
-      #   with:
-      #     inlineScript: |
-      #       az containerapp job update \
-      #         --name db-refresh \
-      #         --resource-group gfi-server \
-      #         --image ${{ needs.build.outputs.image }}
+      - name: Update Scheduled Job
+        uses: azure/CLI@v1
+        with:
+          inlineScript: |
+            az containerapp job update \
+              --name db-refresh \
+              --resource-group gfi-server \
+              --image ${{ needs.build.outputs.image }}

@@ -11,3 +11,5 @@ renaming resoures
  removed temp
 
  fixing issues with azure
+
+ Fixing chron job
