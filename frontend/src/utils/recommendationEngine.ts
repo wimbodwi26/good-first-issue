@@ -8,7 +8,7 @@ export function getRecommendedIssue(issues: Issue[]): Issue | null {
   );
 
   if (faangIssues.length === 0) {
-    return null;
+    return issues[0];
   }
 
   // Sort by latest updated date (descending)
