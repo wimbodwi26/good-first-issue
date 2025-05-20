@@ -8,6 +8,10 @@ export function getRecommendedIssue(issues: Issue[]): Issue | null {
   );
 
   if (faangIssues.length === 0) {
+    issues.sort((a, b) =>
+      b.repository.stars - a.repository.stars
+    )
+    
     return issues[0];
   }
 
