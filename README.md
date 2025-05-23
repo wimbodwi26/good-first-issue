@@ -3,6 +3,7 @@
 > Find your first open source issue faster than ever.
 
 GoodFirstIssues is a modern web app that **fetches**, **filters**, and **recommends** good first issues from popular open-source projects — especially from **FAANG** and other major tech companies.
+<img width="1630" alt="image" src="https://github.com/user-attachments/assets/19ccc527-631b-47f0-a69b-bac10287d48d" />
 
 Built using:
 -  FastAPI + Redis on the backend
